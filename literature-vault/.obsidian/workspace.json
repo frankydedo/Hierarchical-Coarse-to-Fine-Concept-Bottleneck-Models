@@ -1,0 +1,223 @@
+{
+  "main": {
+    "id": "f324e2b5ce888f66",
+    "type": "split",
+    "children": [
+      {
+        "id": "81eda9f353a2cb31",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dd91fdb732cdf65a",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Vista grafo"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "cf3216594fd2c656",
+    "type": "split",
+    "children": [
+      {
+        "id": "d852e97dabcb1437",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a4cfd3efb1426e88",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Esplora file"
+            }
+          },
+          {
+            "id": "561fd74b3222055d",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Ricerca"
+            }
+          },
+          {
+            "id": "6ba7ecdc0f495d8c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Segnalibri"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "bfcde7aba8f1c555",
+    "type": "split",
+    "children": [
+      {
+        "id": "de281c511275f6d2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "dea77cd4d6535bc3",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Riferimenti"
+            }
+          },
+          {
+            "id": "c2bcc4a747d80d9c",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Collegamenti in uscita"
+            }
+          },
+          {
+            "id": "9ae823f2561f820b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etichette"
+            }
+          },
+          {
+            "id": "cf5d535cc7cf19f5",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Tutte le proprietà"
+            }
+          },
+          {
+            "id": "18ea3b7adc4bc928",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Struttura"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Apri selettore rapido": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota giornaliera": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false,
+      "bases:Crea nuova Base": false
+    }
+  },
+  "active": "dd91fdb732cdf65a",
+  "lastOpenFiles": [
+    "wiki/concepts/Concept Pooling.md",
+    "wiki/papers/Bertinetto_2020.md",
+    "wiki/gap_analysis.md",
+    "raw/cartella senza nome",
+    "wiki/research_gaps.md",
+    "wiki/literature_review.md",
+    "wiki/concepts/Tree-path KL Divergence Loss.md",
+    "wiki/concepts/Gradient-based Saliency Alignment Loss.md",
+    "wiki/concepts/Label-Free Concept Bottleneck Model (LF-CBM).md",
+    "wiki/concepts/HIL-CBM.md",
+    "raw/Zhang_2019_ingested.pdf",
+    "raw/Xie_2026_ingested.pdf",
+    "raw/Xiang_2026_ingested.pdf",
+    "raw/Wang_2023_ingested.pdf",
+    "wiki/concepts/Super-prototypes.md",
+    "wiki/concepts/Semantic Prototypes.md",
+    "wiki/concepts/Visual Prototypes.md",
+    "wiki/concepts/Transductive Zero-Shot Learning.md",
+    "wiki/concepts/Zero-Shot Learning (ZSL).md",
+    "wiki/concepts/Scale-aware Pseudo Label Generation Strategy (SPLGS).md",
+    "wiki/concepts/Prototype Regularization Loss (PR-Loss).md",
+    "wiki/concepts/Region-to-Prototype Contrastive Loss (RPC-Loss).md",
+    "wiki/concepts/Hierarchical Prototype Learning (HPL).md",
+    "wiki/concepts/Low-quality Object Detection.md",
+    "wiki/concepts/HiProto.md",
+    "wiki/concepts/Slot Attention.md",
+    "wiki/concepts/Self-Supervision over Concepts.md",
+    "wiki/concepts/Bottleneck Concept Learner (BotCL).md",
+    "wiki/papers/Zhang_2019.md",
+    "wiki/papers/Xie_2026.md",
+    "wiki/papers/Xiang_2026.md",
+    "raw/Uyterlinde_2026_ingested.pdf",
+    "raw/Sun_2026_ingested.pdf",
+    "raw/Sun_2025_ingested.pdf",
+    "raw/Sun_2024_ingested.pdf",
+    "raw/Poeta_2025_ingested.pdf"
+  ]
+}

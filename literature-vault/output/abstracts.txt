@@ -1,0 +1,776 @@
+=== Bertinetto_2020.pdf ===
+Making Better Mistakes: Leveraging Class Hierarchies with Deep Networks
+Luca Bertinetto∗ Romain Mueller∗
+
+Konstantinos Tertikas
+
+Sina Samangooei
+
+Nicholas A. Lord∗
+
+{luca.bertinetto, romain.mueller, konstantinos.tertikas, sina, nick.lord}@five.ai
+
+Abstract
+
+1. Introduction
+Image classification networks have improved greatly
+over recent years, but generalisation remains imperfect, and
+test-time errors do of course occur. Conventionally, such
+errors are defined with respect to a single ground-truth class
+and reported using one or more top-k measures (k typically
+set to 1 or 5). However, this practice imposes certain notions of what it means to make a mistake, including treating
+all classes other than the “true” label as equally wrong. This
+may not actually correspond to our intuitions about desired
+classifier behaviour, and for some applications this point
+may prove crucial. Take the example of an autonomous vehicle observing an object on the side of the road: whatever
+measure of classifier performance we use, we can certainly
+agree that mistaking a lamppost for a tree is less of a problem than mistaking a person for a tree, as such a mistake
+would have crucial implications in terms both of prediction
+and planning. If we want to take such considerations into
+account, we must incorporate a nontrivial model of the relationships between classes, and accordingly rethink more
+∗ Equal contribution.
+
+%
+
+Deep neural networks have improved image classification dramatically over the past decade, but have done so
+by focusing on performance measures that treat all classes
+other than the ground truth as equally wrong. This has
+led to a situation in which mistakes are less likely to be
+made than before, but are equally likely to be absurd or
+catastrophic when they do occur. Past works have recognised and tried to address this issue of mistake severity, often by using graph distances in class hierarchies, but this
+has largely been neglected since the advent of the current
+=== Cai_2025.pdf ===
+arXiv:2508.18313v1 [cs.LG] 23 Aug 2025
+
+ProtoEHR: Hierarchical Prototype Learning for EHR-based
+Healthcare Predictions
+Zi Cai∗
+
+Yu Liu†
+
+University of Cambridge
+Cambridge, United Kingdom
+caizicharlesofficial@gmail.com
+
+University of Oxford
+Oxford, United Kingdom
+yu.liu@eng.ox.ac.uk
+
+Zhiyao Luo
+
+Tingting Zhu
+
+University of Oxford
+Oxford, United Kingdom
+zhiyao.luo@eng.ox.ac.uk
+
+University of Oxford
+Oxford, United Kingdom
+tingting.zhu@eng.ox.ac.uk
+
+Abstract
+
+Keywords
+
+Digital healthcare systems have enabled the collection of mass
+healthcare data in electronic healthcare records (EHRs), allowing
+artificial intelligence solutions for various healthcare prediction
+tasks. However, existing studies often focus on isolated components
+of EHR data, limiting their predictive performance and interpretability. To address this gap, we propose ProtoEHR, an interpretable
+hierarchical prototype learning framework that fully exploits the
+rich, multi-level structure of EHR data to enhance healthcare predictions. More specifically, ProtoEHR models relationships within
+and across three hierarchical levels of EHRs: medical codes, hospital visits, and patients. We first leverage large language models to
+=== Debot_2025.pdf ===
+Interpretable Hierarchical Concept Reasoning through
+Attention-Guided Graph Learning
+David Debot1 , Pietro Barbiero2 , Gabriele Dominici3 , and Giuseppe Marra1
+
+arXiv:2506.21102v1 [cs.LG] 26 Jun 2025
+
+1
+
+Department of Computer Science, KU Leuven
+2
+IBM Research, Zurich
+3
+Università della Svizzera Italiana, Lugano
+June 26, 2025
+Abstract
+
+Concept-Based Models (CBMs) are a class of deep learning models that provide interpretability by
+explaining predictions through high-level concepts. These models first predict concepts and then
+use them to perform a downstream task. However, current CBMs offer interpretability only for
+the final task prediction, while the concept predictions themselves are typically made via black-box
+neural networks. To address this limitation, we propose Hierarchical Concept Memory Reasoner
+(H-CMR), a new CBM that provides interpretability for both concept and task predictions. H-CMR
+models relationships between concepts using a learned directed acyclic graph, where edges represent
+logic rules that define concepts in terms of other concepts. During inference, H-CMR employs a
+neural attention mechanism to select a subset of these rules, which are then applied hierarchically
+to predict all concepts and the final task. Experimental results demonstrate that H-CMR matches
+state-of-the-art performance while enabling strong human interaction through concept and model
+interventions. The former can significantly improve accuracy at inference time, while the latter can
+enhance data efficiency during training when background knowledge is available.
+
+1
+
+Introduction
+
+Concept-Based models (CBMs) have introduced a significant advancement in deep learning (DL) by making
+models explainable-by-design [1–12]. These models integrate high-level, human-interpretable concepts
+directly into DL architectures, bridging the gap between black-box neural networks and transparent
+decision-making. One of the most well-known CBMs is the Concept Bottleneck Model (CBNM) [1], which
+first maps an input (e.g. an image) to a set of human-understandable concepts (e.g. "pedestrian present,"
+"danger in front") using a neural network and then maps these concepts to a downstream task (e.g. "press
+=== Forest_2024.pdf ===
+Interpretable Prognostics with Concept Bottleneck
+Models
+
+arXiv:2405.17575v1 [cs.LG] 27 May 2024
+
+Florent Forest, Katharina Rombach, Olga Fink
+a
+
+Intelligent Maintenance and Operations Systems, EPFL, Lausanne, Switzerland
+
+Abstract
+Deep learning approaches have recently been extensively explored for the
+prognostics of industrial assets. However, they still suffer from a lack of
+interpretability, which hinders their adoption in safety-critical applications.
+To improve their trustworthiness, explainable AI (XAI) techniques have been
+applied in prognostics, primarily to quantify the importance of input variables
+for predicting the remaining useful life (RUL) using post-hoc attribution
+methods. In this work, we propose the application of Concept Bottleneck
+Models (CBMs), a family of inherently interpretable neural network architectures based on concept explanations, to the task of RUL prediction. Unlike
+attribution methods, which explain decisions in terms of low-level input features, concepts represent high-level information that is easily understandable
+by users. Moreover, once verified in actual applications, CBMs enable domain
+experts to intervene on the concept activations at test-time. We propose using
+the different degradation modes of an asset as intermediate concepts. Our case
+studies on the New Commercial Modular AeroPropulsion System Simulation
+(N-CMAPSS) aircraft engine dataset for RUL prediction demonstrate that the
+performance of CBMs can be on par or superior to black-box models, while
+being more interpretable, even when the available labeled concepts are limited.
+Code available at github.com/EPFL-IMOS/concept-prognostics/.
+Keywords: Prognostics, Remaining Useful Life, Concept Bottleneck Model,
+Explainable AI, XAI, Interpretability, Concepts
+1. Introduction
+Prognostics is the task of forecasting how long an industrial asset will
+be able to operate and fulfill its function after the onset of a fault (Biggio
+Preprint submitted to Information Fusion
+
+May 29, 2024
+
+=== Hase_2019.pdf ===
+Interpretable Image Recognition with Hierarchical Prototypes
+Peter Hase,1, 2 Chaofan Chen,2 Oscar Li,2 Cynthia Rudin2
+1
+
+UNC Chapel Hill
+Duke University
+peter@cs.unc.edu, {chaofan.chen, rl144, cynthia.rudin}@duke.edu
+2
+
+Abstract
+Vision models are interpretable when they classify objects
+on the basis of features that a person can directly understand. Recently, methods relying on visual feature prototypes
+have been developed for this purpose. However, in contrast
+to how humans categorize objects, these approaches have not
+yet made use of any taxonomical organization of class labels.
+With such an approach, for instance, we may see why a chimpanzee is classified as a chimpanzee, but not why it was considered to be a primate or even an animal. In this work we introduce a model that uses hierarchically organized prototypes
+to classify objects at every level in a predefined taxonomy.
+Hence, we may find distinct explanations for the prediction an
+image receives at each level of the taxonomy. The hierarchical prototypes enable the model to perform another important
+task: interpretably classifying images from previously unseen
+classes at the level of the taxonomy to which they correctly
+relate, e.g. classifying a hand gun as a weapon, when the only
+weapons in the training data are rifles. With a subset of ImageNet, we test our model against its counterpart black-box
+model on two tasks: 1) classification of data from familiar
+classes, and 2) classification of data from previously unseen
+classes at the appropriate level in the taxonomy. We find that
+our model performs approximately as well as its counterpart
+black-box model while allowing for each classification to be
+interpreted.
+
+1
+
+Introduction
+
+What is clear from the study of human vision is that we organize the world into “inductively rich” categories that relate to each other taxonomically: we glean useful information from recognizing that something is an animal, and we
+draw even more useful information from seeing that it is a
+tiger rather than a cat (Bloom 2001). Further, we can explain our visual judgments by pointing to prototypical features that an object possesses as evidence for its membership
+in the class to which those features correspond (Salakhutdinov, Tenenbaum, and Torralba 2012); a certain animal is a
+tiger because it is a large cat with black stripes, approximately orange fur, menacing teeth, etc. Using some internal
+Copyright c 2019, Association for the Advancement of Artificial
+=== Hill_2026.pdf ===
+Published as a conference paper at ICLR 2026
+
+H IERARCHICAL C ONCEPT- BASED I NTERPRETABLE
+M ODELS
+Oscar Hill
+University of Cambridge
+ogh22@cam.ac.uk
+
+Mateo Espinosa Zarlenga
+University of Oxford
+trin4380@ox.ac.uk
+
+Mateja Jamnik
+University of Cambridge
+mj201@cam.ac.uk
+
+A BSTRACT
+Modern deep neural networks remain challenging to interpret due to the opacity
+of their latent representations, impeding model understanding, debugging, and
+debiasing. Concept Embedding Models (CEMs) address this by mapping inputs to
+human-interpretable concept representations from which tasks can be predicted.
+Yet, CEMs fail to represent inter-concept relationships and require concept annotations at different granularities during training, limiting their applicability. In this
+paper, we introduce Hierarchical Concept Embedding Models (HiCEMs), a new
+family of CEMs that explicitly model concept relationships through hierarchical
+structures. To enable HiCEMs in real-world settings, we propose Concept Splitting, a method for automatically discovering finer-grained sub-concepts from a
+pretrained CEM’s embedding space without requiring additional annotations. This
+allows HiCEMs to generate fine-grained explanations from limited concept labels,
+reducing annotation burdens. Our evaluation across multiple datasets, including a
+user study and experiments on PseudoKitchens, a newly proposed concept-based
+dataset of 3D kitchen renders, demonstrates that (1) Concept Splitting discovers
+human-interpretable sub-concepts absent during training that can be used to train
+highly accurate HiCEMs, and (2) HiCEMs enable powerful test-time concept
+interventions at different granularities, leading to improved task accuracy.
+
+1
+
+I NTRODUCTION
+
+State-of-the-art Deep Neural Networks (DNNs) can achieve very high task accuracies but fail to
+explain their reasoning in human-understandable terms (Barredo Arrieta et al., 2020). Concept
+=== Kalampalikis_2025.pdf ===
+Towards Reasonable Concept Bottleneck Models
+Nektarios Kalampalikis
+
+kalampalikis@cs.uni-saarland.de
+
+Department of Computer Science
+Saarland University, Germany
+
+Kavya Gupta
+
+gupta@cs.uni-saarland.de
+
+arXiv:2506.05014v2 [cs.LG] 11 Apr 2026
+
+Department of Computer Science
+Saarland University, Germany
+
+Georgi Vitanov
+
+gevi00002@uni-saarland.de
+
+Department of Computer Science
+Saarland University, Germany
+
+Isabel Valera
+
+ivalera@cs.uni-saarland.de
+
+Department of Computer Science
+Saarland University, Germany
+
+Abstract
+We propose a novel, flexible, and efficient framework for designing Concept Bottleneck Models
+(CBMs) that enables practitioners to explicitly encode and extend their prior knowledge
+and beliefs about the concept-concept (C-C) and concept-task (C→Y) relationships within the
+model’s reasoning when making predictions. The resulting Concept REAsoning Models
+(CREAMs) architecturally encode arbitrary types of C-C relationships such as mutual
+exclusivity, hierarchical associations, and/or correlations, as well as potentially sparse C→Y
+relationships. Moreover, CREAM can optionally incorporate a regularized side-channel to
+complement the potentially incomplete concept sets, achieving competitive task performance
+=== Lin_2022.pdf ===
+Explainable fetal ultrasound quality assessment
+with progressive concept bottleneck models
+
+arXiv:2211.10630v2 [cs.CV] 4 Mar 2025
+
+Manxi Lin1 , Aasa Feragen1(B) , Kamil Mikolaj1 , Zahra Bashir2,3 ,
+Morten B. S. Svendsen1,3 , Martin G. Tolsgaard3,4,5 ,
+Anders N. Christensen1
+Technical University of Denmark, Kongens Lyngby, Denmark
+afhar@dtu.dk
+2
+Slagelse Hospital, Slagelse, Denmark
+3
+CAMES, Copenhagen, Denmark
+4
+Copenhagen University Hospital Rigshospitalet, Copenhagen, Denmark
+5
+Department of Clinical Medicine, University of Copenhagen, Copenhagen, Denmark
+1
+
+Abstract. The quality of fetal ultrasound screening scans directly influences the precision of biometric measurements. However, acquiring highquality scans is labor-intensive and highly relies on the operator’s skills.
+Considering the low contrastiveness and imaging artifacts that widely exist in ultrasound, even a dedicated deep-learning model can be vulnerable
+to learning from confounding information in the image. In this paper, we
+propose a holistic and explainable method for fetal ultrasound quality
+assessment, where we design a hierarchical concept bottleneck model by
+introducing human-readable “concepts" into the task and imitating the
+sequential expert decision-making process. This hierarchical information
+flow forces the model to learn concepts from semantically meaningful areas: The model first passes through a layer of visual, segmentation-based
+concepts, and next a second layer of property concepts directly associated
+with the decision-making task. We consider the quality assessment to be
+in a more challenging but more realistic setting, with fine-grained image
+recognition. Experiments show that our model outperforms equivalent
+concept-free models on an in-house dataset, and shows better generalizability on two public benchmarks, one from Spain and one from Africa,
+without any fine-tuning. Our implementation is publicly available here.
+Keywords: Explainable Artificial Intelligence · Medical Application ·
+Concept-based Explanations
+
+1
+
+Introduction
+=== Panousis_2023.pdf ===
+Coarse-to-Fine Concept Bottleneck Models
+
+Konstantinos P. Panousis1,3,4,5
+
+arXiv:2310.02116v2 [cs.LG] 27 Jun 2024
+
+1
+
+Inria
+
+2
+
+Inrae
+
+3
+
+Dino Ienco1,2,3,5
+
+Diego Marcos1,3,4,5
+
+University of Montpellier 4 LIRMM
+
+5
+
+UMR-Tetis
+
+{konstantinos.panousis, diego.marcos}@inria.fr
+dino.ienco@inrae.fr
+
+Abstract
+Deep learning algorithms have recently gained significant attention due to their
+impressive performance. However, their high complexity and un-interpretable
+mode of operation hinders their confident deployment in real-world safety-critical
+tasks. This work targets ante hoc interpretability, and specifically Concept Bottleneck Models (CBMs). Our goal is to design a framework that admits a highly
+interpretable decision making process with respect to human understandable concepts, on two levels of granularity. To this end, we propose a novel two-level
+concept discovery formulation leveraging: (i) recent advances in vision-language
+models, and (ii) an innovative formulation for coarse-to-fine concept selection via
+data-driven and sparsity-inducing Bayesian arguments. Within this framework,
+concept information does not solely rely on the similarity between the whole image
+and general unstructured concepts; instead, we introduce the notion of concept
+=== Pittino_2023.pdf ===
+Engineering Applications of Artificial Intelligence 118 (2023) 105674
+
+Contents lists available at ScienceDirect
+
+Engineering Applications of Artificial Intelligence
+journal homepage: www.elsevier.com/locate/engappai
+
+Hierarchical concept Bottleneck models for vision and their application to
+explainable fine classification and tracking
+Federico Pittino a ,∗, Vesna Dimitrievska a , Rudolf Heer b
+a Silicon Austria Labs GmbH, Europastraße 12, Villach 9524, Austria
+b
+
+Silicon Austria Labs GmbH, Inffeldgasse 33, Graz 8010, Austria
+
+ABSTRACT
+Improving the explainability of Computer Vision models based on Deep Learning has recently become a compelling problem, ensuring reliable predictions to
+the end-user and enabling more fine-grained classifications. Recently, Concept Bottleneck models have been proposed for images classification, partitioning the
+problem in two stages and thereby defining a hierarchy of concepts. So far, however, little work has been done to investigate the applicability of this approach
+to other datasets with higher intra-class variability and ambiguity, and to discuss its flexibility to tasks different from whole-images classification. In this work
+we develop and discuss a Concept Bottleneck model for images segmentation, objects fine classification and tracking, and compare it to more classical methods
+based on Mask R-CNN and images similarity algorithms. All our models are trained and tested on a dataset comprised of pictures of fridges filled with various
+objects, however the method can be applied to any fine classification task. The proposed model makes full use of the hierarchy in concepts, exploiting the
+relationships between different categories at the same hierarchical level and relying on a novel method for handling multi-labels classifications. We show that
+the performance on fine classification is on par with a regular Mask R-CNN, but with a significant increase in explainability and in handling classes confusion.
+New explainable metrics are proposed to quantitatively evaluate the increase in explainability. We also demonstrate the effectiveness of the derived Concept
+Bottleneck features on related tasks, i.e., the tracking of objects between consecutive pictures in a sequence. The code is released as open source and available
+at https://opensource.silicon-austria.com/pittinof/hierarchical-concept-bottleneck.
+
+1. Introduction
+Images segmentation and objects classification are typical problems
+in Machine Vision, which have been very successfully addressed by
+Deep Learning methods, such as Mask R-CNN (He et al., 2017). The
+most popular models, however, are usually treated as a ‘‘black-box’’,
+limiting the explainability of their predictions. This can be especially
+troublesome when the classification needs to be very fine, i.e., when
+having to differentiate between very similar objects, since in this case
+usually minor differences between objects are relevant. We believe
+that understanding why classification errors occur can be helpful in
+improving the performance in objects fine classification.
+=== Poeta_2025.pdf ===
+Concept-based Explainable Artificial Intelligence: A Survey
+ELEONORA POETA∗ , GABRIELE CIRAVEGNA∗ , ELIANA PASTOR, TANIA CERQUITELLI, and ELENA
+BARALIS, Politecnico di Torino, Italy
+The field of explainable artificial intelligence emerged in response to the growing need for more transparent and reliable models.
+However, using raw features to provide explanations has been disputed in several works lately, advocating for more user-understandable
+explanations. To address this issue, a wide range of papers proposing Concept-based eXplainable Artificial Intelligence (C-XAI) methods
+have arisen in recent years. Nevertheless, a unified categorization and precise field definition are still missing. This paper fills the gap
+
+arXiv:2312.12936v1 [cs.AI] 20 Dec 2023
+
+by offering a thorough review of C-XAI approaches. We define and identify different concepts and explanation types. We provide a
+taxonomy identifying nine categories and propose guidelines for selecting a suitable category based on the development context.
+Additionally, we report common evaluation strategies including metrics, human evaluations and dataset employed, aiming to assist the
+development of future methods. We believe this survey will serve researchers, practitioners, and domain experts in comprehending
+and advancing this innovative field.
+CCS Concepts: • Computing methodologies → Knowledge representation and reasoning.
+Additional Key Words and Phrases: Explainable AI, Concept-based XAI, Concept-based Explainability
+
+1
+
+INTRODUCTION
+
+In recent years, the importance of Artificial Intelligence (AI) has surged due to its transformative impact on various aspects of society and industry. This success is predominantly attributed to the advancement of Deep Learning models [63].
+However, the inherent complexity and opaque nature of Deep Neural Networks (DNN) hinders understanding the
+decision-making process underlying these models. This issue prevents the safe employment of these models in contexts
+that significantly affect users. Consequently, decision-making systems based on Deep learning have faced constraints
+and limitations from regulatory institutions [40, 71], which increasingly demand transparency in AI models [53].
+To address the challenge of creating more trustworthy and transparent AI models, researchers have pursued
+eXplainable AI (XAI) methods [3]. Most XAI methods focus on a single prediction, highlighting which input features
+contributed the most to the prediction of a certain class. This is achieved through gradient-based analysis (Vanilla
+Gradient [102], CAM [124], Grad-CAM [100]), or local approximations with surrogate interpretable models (LIME, [91])
+or game-theoretic approaches (SHAP [70]). Other methods, instead, focus on node-oriented explanations to enhance
+network transparency [31, 102, 119]. Finally, a few methods attempted to globally interpret a model behaviour via
+global feature importance [42] linear combination of non-interpretable ones [6] or global surrogate models [43, 91].
+However, the reliability of standard XAI methods has been contested: [4] showed that gradient-based explanations
+may not change even after randomly re-parametrizing the network or the data labels, while [47] showed that methods
+based on surrogate models are unable to identify the most important features. Furthermore, [36, 59] demonstrated that
+feature importance methods can be misled by simple data modification, which does not affect the model’s prediction.
+Even if these challenges were addressed through the development of more robust methods, a fundamental concern
+remains: standard XAI techniques provide explanations at the feature level, which may lack meaningful interpretation,
+=== Sun_2024.pdf ===
+Eliminating Information Leakage in Hard Concept Bottleneck Models
+with Supervised, Hierarchical Concept Learning
+
+arXiv:2402.05945v1 [cs.LG] 3 Feb 2024
+
+Ao Sun, Yuanyuan Yuan∗ , Pingchuan Ma, and Shuai Wang∗
+The Hong Kong University of Science and Technology
+{asunac, yyuanaq, pmaab, shuaiw}@cse.ust.hk
+Abstract
+
+as black-box models since their extracted features are often
+obscure and hardly interpretable.
+
+Concept Bottleneck Models (CBMs) aim to deliver interpretable and interventionable predictions by bridging features and labels with humanunderstandable concepts. While recent CBMs
+show promising potential, they suffer from information leakage, where unintended information
+beyond the concepts (either when concepts are
+represented with probabilities or binary states) is
+leaked to the subsequent label prediction. Consequently, distinct classes are falsely classified
+via indistinguishable concepts, undermining the
+interpretation and intervention of CBMs.
+
+To address this issue, concept bottleneck models (CBMs)
+have recently emerged with the purpose of delivering highquality explanations for DNN predictions (Koh et al., 2020).
+CBMs are a type of DNN that makes predictions based on
+human-understandable concepts. CBMs typically have a
+Concept-Bottleneck (CB) layer located before the last fullyconnected (FC) layer. The CB layer takes features extracted
+(by preceding layers) from the input and maps them to
+a set of concepts. This effectively aligns the intermediate
+layers of a DNN with some pre-defined expert concepts, and
+the last FC determines the final label over those concepts.
+Often, CBMs require first training the CB layer to align each
+neuron to a concept that is pre-defined and understandable
+to humans.
+
+This paper alleviates the information leakage
+issue by introducing label supervision in concept prediction and constructing a hierarchical
+concept set. Accordingly, we propose a new
+paradigm of CBMs, namely S UP CBM, which
+achieves label prediction via predicted concepts
+and a deliberately-designed intervention matrix.
+=== Sun_2025.pdf ===
+Under review as a conference paper at ICLR 2025
+
+000
+001
+002
+003
+004
+005
+006
+007
+008
+009
+010
+011
+012
+013
+014
+015
+016
+017
+018
+019
+020
+021
+022
+023
+024
+025
+026
+027
+028
+029
+030
+031
+032
+033
+034
+035
+036
+037
+=== Sun_2026.pdf ===
+Neurocomputing 675 (2026) 132916
+
+Contents lists available at ScienceDirect
+
+Neurocomputing
+journal homepage: www.elsevier.com/locate/neucom
+
+Hi-CBM: Mitigating information leakage via hierarchical concept bottleneck
+modeling
+Ao Sun a iD, Qingyue Wang a,∗ iD, Yuanyuan Yuan b,∗ , Pingchuan Ma a , Shuai Wang a
+a The Hong Kong University of Science and Technology, Hong Kong Special Administrative Region of China
+b ETH Zurich, Zurich, Switzerland
+
+ARTICLE INFO
+
+A B S T R A CT
+
+Communicated by Y. Cheng
+
+Concept Bottleneck Models (CBMs) enhance interpretability and facilitate effective intervention by explicitly mapping input features to labels through human-understandable concepts. However, existing CBM frameworks often
+suffer from information leakage, wherein latent unintended information bypasses the concept layer, undermining
+interpretability and contaminating downstream predictions. To address this challenge, we propose Hi-CBM, a
+refined CBM framework that explicitly safeguards the two inherent mappings in CBMs—features → concepts and
+concepts → classes—to prevent leakage. Specifically, a Concept-Bottleneck Pooling mechanism regulates the featureto-concept mapping by selectively aggregating latent features into semantic concepts to filter out irrelevant
+signals, while a binary Intervention Matrix governs the concept-to-class mapping by constraining concept–class
+associations, preventing unintended information encoded in concept probabilities from influencing final predictions. Extensive experiments across multiple datasets show that Hi-CBM substantially mitigates information
+leakage and produces concept representations that are both interpretable and intervenable, while maintaining
+strong predictive performance.
+
+Keywords:
+Concept bottleneck model
+Information leakage
+Interpretability
+Intervenability
+
+1. Introduction
+Deep neural networks (DNNs) have achieved remarkable success
+in many real-life tasks [1–3]. However, their black-box nature makes
+the extracted features obscure, hindering users from interpreting DNN
+predictions [4–8]. To address this issue, Explainable AI (XAI) has recently emerged with the purpose of delivering high-quality explanations
+=== Uyterlinde_2026.pdf ===
+Hyperbolic Concept Bottleneck Models
+
+arXiv:2605.06440v2 [cs.LG] 12 May 2026
+
+Daniel Uyterlinde Swasti S. Mishra Pascal Mettes
+Informatics Institute, University of Amsterdam, The Netherlands
+daniel.uijterlinde@student.uva.nl, {s.s.mishra, p.s.m.mettes}@uva.nl
+
+Abstract
+Concept Bottleneck Models (CBMs) have become a popular approach to enable
+interpretability in neural networks by constraining classifier inputs to a set of humanunderstandable concepts. While effective, current models embed concepts in flat
+Euclidean space, treating them as independent, orthogonal dimensions. Concepts,
+however, are highly structured and organized in semantic hierarchies. To resolve
+this mismatch, we propose Hyperbolic Concept Bottleneck Models (HypCBM), a
+post-hoc framework that grounds the bottleneck in this structure by reformulating
+concept activation as asymmetric geometric containment in hyperbolic space.
+Rather than treating entailment cones as a pre-training penalty, we show they
+encode a natural test-time activation signal: the margin of inclusion within a
+concept’s entailment cone yields sparse, hierarchy-aware activations without any
+additional supervision or learned modules. We further introduce an adaptive scaling
+law for hierarchically faithful interventions, propagating user corrections coherently
+through the concept tree. Empirically, HypCBM rivals post-hoc Euclidean models
+trained on 20× more data in sparse regimes required for human interpretability, with
+stronger hierarchical consistency and improved robustness to input corruptions.
+
+1
+
+Introduction
+
+The advent of large black-box models, particularly vision-language models [38, 23, 24], across
+high-stakes domains including healthcare [22, 29], finance [14], and autonomous systems [48], has
+intensified the need for models whose predictions are transparent and interpretable. While various
+frameworks offer post-hoc explanations [13, 12, 53], Concept Bottleneck Models (CBMs) [19] have
+emerged as a canonical approach by enforcing an intermediate, interpretable bottleneck. By requiring
+the model to predict human-understandable concepts before making a final decision, this architecture
+exposes internal reasoning and, crucially, enables users to intervene and correct erroneous predictions
+at the concept level. CBMs have established themselves in interpretable learning, enabling domain
+experts to de-bias models and improve reliability through human-in-the-loop interaction [45].
+Although recent frameworks have improved CBM scalability and usability [56, 32, 47], they retain
+a limiting representational assumption: concept independence. In real-world settings, concepts are
+=== Wang_2023.pdf ===
+Learning Bottleneck Concepts in Image Classification
+Bowen Wang1 , Liangzhi Li2 ,* Yuta Nakashima2 , Hajime Nagahara2
+Osaka University, Japan
+1
+
+arXiv:2304.10131v1 [cs.CV] 20 Apr 2023
+
+2
+
+bowen.wang@is.ids.osaka-u.ac.jp
+
+{li, n-yuta, nagahara}@ids.osaka-u.ac.jp
+
+Abstract
+Interpreting and explaining the behavior of deep neural
+networks is critical for many tasks. Explainable AI provides a way to address this challenge, mostly by providing per-pixel relevance to the decision. Yet, interpreting
+such explanations may require expert knowledge. Some recent attempts toward interpretability adopt a concept-based
+framework, giving a higher-level relationship between some
+concepts and model decisions. This paper proposes Bottleneck Concept Learner (BotCL), which represents an image solely by the presence/absence of concepts learned
+through training over the target task without explicit supervision over the concepts. It uses self-supervision and tailored regularizers so that learned concepts can be humanunderstandable. Using some image classification tasks as
+our testbed, we demonstrate BotCL’s potential to rebuild
+neural networks for better interpretability 1 .
+
+1. Introduction
+Understanding the behavior of deep neural networks
+(DNNs) is a major challenge in the explainable AI (XAI)
+community, especially for medical applications [19,38], for
+identifying biases in DNNs [2, 18, 42], etc. Tremendous research efforts have been devoted to the post-hoc paradigm
+for a posteriori explanation [29, 33]. This paradigm produces a relevance map to spot regions in the input image that
+interact with the model’s decision. Yet the relevance map
+only tells low-level (or per-pixel) relationships and does not
+explicitly convey any semantics behind the decision. Interpretation of relevance maps may require expert knowledge.
+The concept-based framework [22, 37, 50] is inspired by
+the human capacity to learn a new concept by (subconsciously) finding finer-grained concepts and reuse them in
+different ways for better recognition [24]. Instead of giving per-pixel relevance, this framework offers higher-level
+* Corresponding author.
+1 Code is available at https://github.com/wbw520/BotCL and a simple
+
+demo is available at https://botcl.liangzhili.com/.
+
+=== Xiang_2026.pdf ===
+JOURNAL OF LATEX CLASS FILES, VOL. 14, NO. 8, AUGUST 2021
+
+1
+
+HiProto: Hierarchical Prototype Learning for
+Interpretable Object Detection Under Low-quality
+Conditions
+
+arXiv:2604.13981v1 [cs.CV] 15 Apr 2026
+
+Jianlin Xiang, Linhui Dai∗ , Xue Yang, Chaolei Yang, and Yanshan Li
+
+Abstract—Interpretability is essential for deploying object
+Low-quality
+Enhanced
+Detection
+Image
+Image
+Result
+detection systems in critical applications, especially under lowTwo
+quality imaging conditions that degrade visual information and （a）
+Stage
+Enhancer
+Detector
+increase prediction uncertainty. Existing methods either enhance
+image quality or design complex architectures, but often lack
+Low-quality
+Detection
+interpretability and fail to improve semantic discrimination. In
+Image
+Result
+contrast, prototype learning enables interpretable modeling by
+Detection Subnetwork
+associating features with class-centered semantics, which can pro- （b）
+Restoration
+Detector
+Subnetwork
+vide more stable and interpretable representations under degraEnddation. Motivated by this, we propose HiProto, a new paradigm
+to-End
+Low-quality
+=== Xie_2026.pdf ===
+1
+
+Hierarchical, Interpretable, Label-Free Concept
+Bottleneck Model
+
+arXiv:2604.02468v1 [cs.CV] 2 Apr 2026
+
+Haodong Xie, Yujun Cai, Rahul Singh Maharjan, Yiwei Wang, Federico Tavella, and Angelo Cangelosi.
+
+Abstract—Concept Bottleneck Models (CBMs) introduce interpretability to black-box deep learning models by predicting
+labels through human-understandable concepts. However, unlike
+humans, who identify objects at different levels of abstraction
+using both general and specific features, existing CBMs operate
+at a single semantic level in both concept and label space.
+We propose HIL-CBM, a Hierarchical Interpretable Label-Free
+Concept Bottleneck Model that extends CBMs into a hierarchical
+framework to enhance interpretability by more closely mirroring
+the human cognitive process. HIL-CBM enables classification
+and explanation across multiple semantic levels without requiring
+relational concept annotations. HIL-CBM aligns the abstraction
+level of concept-based explanations with that of model predictions, progressing from abstract to concrete. This is achieved
+by (i) introducing a gradient-based visual consistency loss that
+encourages abstraction layers to focus on similar spatial regions,
+and (ii) training dual classification heads, each operating on
+feature concepts at different abstraction levels. Experiments
+on benchmark datasets demonstrate that HIL-CBM outperforms state-of-the-art sparse CBMs in classification accuracy.
+Human evaluations further show that HIL-CBM provides more
+interpretable and accurate explanations, while maintaining a
+hierarchical and label-free approach to feature concepts.
+Index Terms—Concept Bottleneck Model, Explainable AI,
+Concept-Based Explanations
+
+I. I NTRODUCTION
+Taxonomy organize objects into hierarchical categories
+based on shared characteristics, ranging from general to specific. In the visual domain, taxonomic structures are natural
+and central to human understanding. Among these levels,
+the basic level of abstraction holds particular significance in
+human categorization [1]. Within a taxonomic hierarchy, the
+basic level occupies the middle tier, representing a moderate
+level of generality [2]. Typically, when people name objects,
+=== Zhang_2019.pdf ===
+1
+
+Hierarchical Prototype Learning for Zero-Shot
+Recognition
+
+arXiv:1910.11671v2 [cs.CV] 10 Dec 2019
+
+Xingxing Zhang, Shupeng Gui, Zhenfeng Zhu, Yao Zhao, Senior Member, IEEE, and Ji Liu
+
+Abstract—Zero-Shot Learning (ZSL) has received extensive
+attention and successes in recent years especially in areas of
+fine-grained object recognition, retrieval, and image captioning.
+Key to ZSL is to transfer knowledge from the seen to the
+unseen classes via auxiliary semantic prototypes (e.g., word or
+attribute vectors). However, the popularly learned projection
+functions in previous works cannot generalize well due to nonvisual components included in semantic prototypes. Besides, the
+incompleteness of provided prototypes and captured images has
+less been considered by the state-of-the-art approaches in ZSL. In
+this paper, we propose a hierarchical prototype learning formulation to provide a systematical solution (named HPL) for zero-shot
+recognition. Specifically, HPL is able to obtain discriminability on
+both seen and unseen class domains by learning visual prototypes
+respectively under the transductive setting. To narrow the gap of
+two domains, we further learn the interpretable super-prototypes
+in both visual and semantic spaces. Meanwhile, the two spaces are
+further bridged by maximizing their structural consistency. This
+not only facilitates the representativeness of visual prototypes, but
+also alleviates the loss of information of semantic prototypes. An
+extensive group of experiments are then carefully designed and
+presented, demonstrating that HPL obtains remarkably more
+favorable efficiency and effectiveness, over currently available
+alternatives under various settings.
+Index Terms—Zero-shot learning, prototype, transductive
+learning, unseen class.
+
+I. I NTRODUCTION
+RADITIONAL object recognition tasks require the test
+classes to be identical or a subset of the training classes.
+Due to the deep learning techniques and growing availability of
+big data, dramatic progresses have been achieved on these tasks
+in recent years [1]. However, in many practical applications,

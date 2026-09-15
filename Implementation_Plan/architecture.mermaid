@@ -1,0 +1,57 @@
+graph TD
+    %% Offline Phase (LLM)
+    subgraph Offline ["Offline Phase: Label-Free Concept Generation"]
+        LLM["Large Language Model (e.g., GPT-4)"]
+        CoarseText["Coarse Concept Texts <br/>e.g., 'A photo of a vehicle with wheels'"]
+        FineText["Fine Concept Texts <br/>e.g., 'A photo of a bicycle with spokes'"]
+        TextEnc["CLIP Text Encoder"]
+        C_Emb[("Static Concept Embeddings <br/>(Used as weights in predictors)")]
+        
+        LLM -->|Prompt: Distinguish Superclasses| CoarseText
+        LLM -->|Prompt: Distinguish Subclasses| FineText
+        CoarseText --> TextEnc
+        FineText --> TextEnc
+        TextEnc --> C_Emb
+    end
+
+    %% Runtime Phase (Inference)
+    subgraph Runtime ["Runtime Phase: Inference"]
+        I["Raw Image"] --> FE["Feature Extractor (CLIP Image Encoder)"]
+        FE --> Z["Latent Image Features"]
+        
+        %% Level 1
+        Z --> CC_Pred["Coarse Concept Predictor <br/>(Cosine Similarity)"]
+        C_Emb -.->|Provides Coarse Concept Vectors| CC_Pred
+        CC_Pred --> CC_Act(["Coarse Concept Activations"])
+        CC_Act --> CL_Pred["Coarse Label Predictor"]
+        CL_Pred --> SuperClass{"Predicted Superclass"}
+        
+        %% Gate
+        SuperClass --> MaskGen["Mask Generator"]
+        MaskGen --> BMask>"Binary Concept Mask"]
+        
+        %% Level 2
+        Z --> FC_Pred["Fine Concept Predictor <br/>(Cosine Similarity)"]
+        C_Emb -.->|Provides Fine Concept Vectors| FC_Pred
+        FC_Pred --> FC_Act(["All Fine Concept Activations"])
+        FC_Act --> Filter{"Masking Operation"}
+        BMask -.->|Zeroes out irrelevant branches| Filter
+        Filter --> FFC_Act(["Filtered Fine Concept Activations"])
+        FFC_Act --> FL_Pred["Fine Label Predictor"]
+        FL_Pred --> SubClass{"Predicted Subclass"}
+    end
+
+    %% Styles
+    classDef llm fill:#f3e8ff,stroke:#7e22ce,stroke-width:2px,color:#3b0764;
+    classDef inputs fill:#e2e8f0,stroke:#64748b,stroke-width:2px,color:#0f172a;
+    classDef features fill:#bae6fd,stroke:#0284c7,stroke-width:2px,color:#0c4a6e;
+    classDef concepts fill:#bbf7d0,stroke:#16a34a,stroke-width:2px,color:#14532d;
+    classDef labels fill:#fef08a,stroke:#ca8a04,stroke-width:2px,color:#713f12;
+    classDef gate fill:#fecaca,stroke:#dc2626,stroke-width:2px,color:#7f1d1d;
+    
+    class LLM,CoarseText,FineText,TextEnc,C_Emb llm;
+    class I inputs;
+    class FE,Z features;
+    class CC_Act,FC_Act,FFC_Act concepts;
+    class SuperClass,SubClass labels;
+    class MaskGen,BMask,Filter gate;

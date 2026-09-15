@@ -1,0 +1,17 @@
+Gentile professoressa,
+
+La ringraziamo per il feedback e le dritte. Abbiamo analizzato il notebook che ci ha fornito e crediamo che ci tornerà decisamente utile per completare con successo la fase offline della nostra architettura. 
+
+Per rispondere in maniera puntuale ai suoi dubbi:
+
+- confermiamo che la gerarchia è sia a livello di classe che livello di concetto. Useremo la tassonomia delle classi (20 superclassi e 100 subclassi) come base per costruire due livelli di concetti testuali separati: concetti Coarse per le superclassi e Fine per le subclassi. La predizione della superclasse azzererà dinamicamente i concetti di basso livello incompatibili.
+
+- proprio come mostrato nel tutorial che ci ha condiviso, abbiamo intenzione di operare un upsampling alle immagini di CIFAR-100 così da renderle compatibili con CLIP e sbloccarci nell’utilizzo del LF.
+
+- sì, ci aspettiamo che valutare le performance a livello di classe con metriche hierarchy-aware ci permetta di verificare l'efficacia del nostro gating sui concetti: ci aspettiamo infatti che se il modello sbaglia, l'errore rimanga confinato all'interno della superclasse corretta.
+
+La ringraziamo nuovamente per la disponibilità e rimaniamo assolutamente aperti a ulteriori consigli e/o chiarimenti. 
+
+Cordialmente 
+
+Francesco Pio De Dominicis
