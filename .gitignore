@@ -4,3 +4,15 @@ __pycache__/
 *.pyo
 .ipynb_checkpoints/
 archive/
+
+# Data and large files
+data/
+*.zip
+
+# PyTorch models and weights
+*.pt
+*.pth
+models/*.pt
+
+# Secrets
+.env
