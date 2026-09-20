@@ -56,7 +56,7 @@ Based on our literature review, we identify the following critical gaps in curre
 
 \textbf{1. The Persistence of Flat Concept Representations:} Despite documented advantages of hierarchical reasoning, deployed CBMs still rely on independent, flat sets of human-defined symbols, overlooking the natural \textit{is-a} and \textit{part-of} relationships that govern visual semantics.
 
-\textbf{2. Disconnect Between Concept and Label Hierarchies:} Many models enforce structural relationships in the feature space but predict a flat label. The literature lacks frameworks where coarse predictions formally gate and dictate fine-grained conceptual evaluation in a strictly constrained manner.
+\textbf{2. Disconnect Between Concept and Label Hierarchies:} While some approaches impose a structural taxonomy onto the labels, and others group the latent conceptual features, the literature currently lacks a \textbf{dual-hierarchy} framework. Existing models fail to rigidly couple a \textit{concept hierarchy} with a \textit{class hierarchy}. Consequently, a model might predict a coarse label but still rely on semantically incompatible fine-grained features, severely undermining the logical integrity of the explanation.
 
 \textbf{3. Limited Integration of Hierarchy-Aware Mistake Evaluation:} Although traditional metrics penalize all mistakes equally, confusing semantically distant classes is worse than confusing related ones~\cite{Bertinetto_2020}. Modern CBMs rarely integrate hierarchy-aware evaluation natively to assess whether the concepts themselves cause "semantically better" mistakes.
 
@@ -64,47 +64,58 @@ To address these gaps, our work strictly enforces a dual-hierarchy (class and co
 
 \section{Methodology}
 
-\begin{figure*}
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=\linewidth]{figures/architecture_hor.png}
+    \includegraphics[width=\linewidth, height=\textheight, keepaspectratio]{figures/architecture_ver2.png}
     \caption{Overview of the Hierarchical Coarse-to-Fine Hard Gating Architecture. \\ \small The framework explicitly separates coarse and fine concepts. A superclass prediction acts as a hard mask, dynamically pruning logically incompatible fine-grained concepts before final classification.}
     \label{fig:arch}
-\end{figure*}
+\end{figure}
 
-Our architecture (Figure~\ref{fig:arch}) introduces a \textbf{Coarse-to-Fine Hard Gating} mechanism that intrinsically enforces taxonomy. We explicitly constructed a custom High-Resolution CIFAR-100 dataset to retain the rigorous two-tier hierarchy (20 Superclasses, 100 Fine Classes) without suffering the degradation of upsampling native 32x32 images, which is necessary to extract high-quality CLIP embeddings.
+Our architecture (Figure~\ref{fig:arch}) introduces a \textbf{Coarse-to-Fine Hard Gating} mechanism designed to address the aforementioned gaps by strictly imposing a \textbf{dual hierarchy}: a hierarchy at the \textit{class level} (20 superclasses and 100 fine subclasses) and an aligned hierarchy at the \textit{concept level} (coarse concepts and fine concepts). We explicitly constructed a custom High-Resolution CIFAR-100 dataset to retain this rigorous two-tier taxonomy without suffering the degradation of upsampling native 32x32 images, which is necessary to extract high-quality CLIP embeddings.
 
 The methodology unfolds in three phases:
-1. \textbf{Label-Free Concept Generation:} Following the LF-CBM paradigm~\cite{Pastor_2026_tutorial}, we used an LLM to generate two completely separated dictionaries: \textit{Coarse Concepts} for distinguishing macro-categories, and \textit{Fine Concepts} for discriminating micro-categories.
-2. \textbf{Coarse Bottleneck:} A coarse logistic regression evaluates the image using \textit{only} the Coarse Concepts to predict one of the 20 superclasses.
-3. \textbf{Hard Gating \& Fine Prediction:} The predicted superclass acts as a hard mask. It dynamically sets the activations of all logically incompatible Fine Concepts to zero. The final fine-grained classification relies exclusively on the "surviving" concepts.
+1. \textbf{Label-Free Concept Generation (Concept Hierarchy):} Following the LF-CBM paradigm~\cite{Pastor_2026_tutorial}, we used an LLM to generate two completely separated dictionaries. The \textit{Coarse Concepts} describe broad visual properties suitable for macro-categories, while the \textit{Fine Concepts} capture detailed, class-specific traits.
+2. \textbf{Coarse Bottleneck (Class Hierarchy - Level 1):} A coarse logistic regression evaluates the image using \textit{only} the Coarse Concepts to predict one of the 20 superclasses. By completely isolating the coarse bottleneck from fine-grained features, we force the model to reason purely on macro-semantics.
+3. \textbf{Hard Gating \& Fine Prediction (Class Hierarchy - Level 2):} The predicted superclass acts as a hard, deterministic mask bridging the two hierarchies. It dynamically sets the activations of all logically incompatible Fine Concepts to zero (e.g., if "Vehicle" is predicted, "fur" or "scales" are nullified). The final fine-grained classification relies exclusively on the "surviving" concepts, guaranteeing logical coherence by design.
 
 \section{Experiments and analysis}
-To validate our approach, we benchmarked our Hierarchical CBM (Hier. CBM) against a standard Flat LF-CBM and a black-box CLIP Linear Probe. 
+To validate our approach, we first analyze the quality of the generated concepts and then benchmark our Hierarchical CBM (Hier. CBM) against a standard Flat LF-CBM and a black-box CLIP Linear Probe. 
+
+\subsection{Validation of Generated Concepts}
+Since our approach relies entirely on Label-Free concept generation, it is crucial that the LLM produces semantically cohesive and distinct concepts. Figure~\ref{fig:per_sc} shows a t-SNE projection of the CLIP text embeddings for the generated coarse concepts. The distinct clustering confirms that CLIP's latent space natively understands the taxonomical separation of the 20 superclasses, independent of our trained model.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig_visual_tsne.png}
+    \caption{t-SNE Visualization of the LLM-generated concepts. \\ \small The distinct clusters represent the CLIP text embeddings of the concepts, validating that the LLM successfully generated semantically separable vocabularies for each superclass.}
+    \label{fig:per_sc}
+\end{figure}
+
+Furthermore, to validate that these textual concepts align with visual inputs, Figure~\ref{fig:oracle} displays the raw cosine similarity (activations) between images from the 'Vehicles 1' superclass and the concept bank. The heatmap demonstrates strong, localized activations for vehicle-related concepts while remaining mostly inactive for irrelevant concepts, validating the quality of the generated text-image alignments prior to training.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{figures/fig_activation_heatmap_vehicles.png}
+    \caption{Concept Activation Heatmap (CLIP Cosine Similarity) for Vehicles. \\ \small This validates the generated concepts by showing that raw images of vehicles strongly activate the correct subset of concepts in CLIP's multimodal space without any fine-tuning.}
+    \label{fig:oracle}
+\end{figure}
 
 \subsection{Hierarchy-Aware Mistake Evaluation}
 Standard Top-1 Accuracy fails to capture the semantic severity of errors. We utilized the Lowest Common Ancestor (LCA) Error Distance, where an error within the same superclass (sibling mistake) has $LCA=1$, and an error across different superclasses (catastrophic mistake) has $LCA=2$.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{figures/fig_lca_distribution.png}
     \caption{Hierarchy-Aware Error Distribution (LCA). \\ \small Comparison of error types across models. The Hierarchical CBM (Ours) favors sibling mistakes over catastrophic errors compared to flat baselines.}
     \label{fig:lca}
 \end{figure}
 
-As shown in Figure~\ref{fig:lca}, while the Flat LF-CBM has a 3.0\% catastrophic error rate (nearly equal to its sibling mistake rate), our model reduces this to ensure that when it does fail, it fails gracefully within the correct semantic domain. To visualize how the model separates these semantic domains, Figure~\ref{fig:per_sc} provides a t-SNE projection of the hierarchical concept space, showing distinct clusters for each superclass.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{figures/fig_visual_tsne.png}
-    \caption{t-SNE Visualization of the hierarchical concept space. \\ \small The model effectively separates distinct semantic superclasses in the concept space, highlighting the taxonomical awareness enforced by the architecture.}
-    \label{fig:per_sc}
-\end{figure}
-
+As shown in Figure~\ref{fig:lca}, while the Flat LF-CBM has a 3.0\% catastrophic error rate (nearly equal to its sibling mistake rate), our model reduces this to ensure that when it does fail, it fails gracefully within the correct semantic domain.
 
 \subsection{Interpretability and Intervenability}
 A fundamental promise of CBMs is the ability for humans to intervene and correct the model's intermediate reasoning. We simulated an \textit{Oracle Intervention}, representing a domain expert correcting the coarse superclass prediction. 
 
-\begin{table}[H]
+\begin{table}[htbp]
 \caption{Performance Comparison across Models. \\ \small Results highlight the Oracle's perfect mitigation of catastrophic errors and its minimal active concept footprint.}
 \label{tab:results}
 \resizebox{\linewidth}{!}{%
@@ -112,34 +123,28 @@ A fundamental promise of CBMs is the ability for humans to intervene and correct
 \toprule
 \textbf{Metric} & \textbf{Hier. CBM (Ours)} & \textbf{Hier. CBM (Oracle)} & \textbf{Flat LF-CBM} & \textbf{CLIP Linear Probe} \\
 \midrule
-Top-1 Acc. & 0.8786 & 0.9191 & 0.9350 & \textbf{0.9642} \\
+Top-1 Acc. & 0.8786 & \textbf{0.9191} & 0.9350 & \textbf{0.9642} \\
+Top-3 Acc. & 0.9489 & N/A & 0.9915 & \textbf{0.9949} \\
 Avg Active Conc. & (46.0+5.4)/2 & \textbf{5.4} & 10.2 & 512 (dim) \\
 Avg LCA Dist. & 0.1672 & 0.0809 & 0.0948 & \textbf{0.0521} \\
 \% Sibling (LCA=1) & 0.076 & 0.081 & 0.035 & 0.019 \\
-\% Catastrophic (LCA=2) & 0.046 & \textbf{0.000} & 0.030 & 0.016 \\
+\% Catastrophic (LCA=2) & 0.046 & 0.000 & 0.030 & 0.016 \\
 \bottomrule
 \end{tabular}}
 \end{table}
 
-Table~\ref{tab:results} reveals the profound impact of our hard-gating architecture. When the Oracle corrects the coarse prediction, catastrophic errors ($LCA=2$) drop exactly to $0.00\%$, and the accuracy jumps to 91.91\%. Figure~\ref{fig:oracle} illustrates this gating behavior by displaying a concept activation heatmap for the 'Vehicles' superclass, showing how logically incompatible concepts are entirely suppressed. 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{figures/fig_activation_heatmap_vehicles.png}
-    \caption{Concept Activation Heatmap for the Vehicles superclass. \\ \small Demonstrates the hard-gating effect: once 'Vehicles' is predicted, all non-vehicle concepts (e.g., animal traits) are entirely suppressed (black areas).}
-    \label{fig:oracle}
-\end{figure}
+Table~\ref{tab:results} reveals the profound impact of our hard-gating architecture under intervention. The key takeaway is that a single high-level Oracle correction on the superclass cascades down through the hard gate, boosting the model's overall accuracy to 91.91\%. This allows our interpretable Hierarchical CBM to close the performance gap and achieve an accuracy that is highly competitive with the black-box CLIP probe (96.42\%) and the standard Flat LF-CBM (93.50\%), while maintaining a strict semantic taxonomy that naturally precludes any cross-superclass ($LCA=2$) errors.
 
 More importantly, the hard gate drastically reduces the cognitive load required to understand the model's final decision. While the model initially uses an average of 46 concepts to find the superclass, once the superclass is fixed (either by the network or the Oracle), it requires an average of only \textbf{5.4 active fine concepts} to determine the final class. Figure~\ref{fig:sparsity} illustrates this sparsity vs accuracy trade-off, placing our Oracle intervention firmly in the high interpretability zone.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{figures/fig_sparsity_bubble.png}
     \caption{Sparsity vs Accuracy Bubble Chart. \\ \small The bubble size represents the average active concept vocabulary. The Oracle intervention achieves high accuracy while requiring an extremely sparse set of concepts (5.4 on average).}
     \label{fig:sparsity}
 \end{figure}
 
-\begin{figure}[H]
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\linewidth]{figures/fig_accuracy_tradeoff.png}
     \caption{Accuracy vs Interpretability Trade-off. \\ \small Visualizing the cost of transparency. While the Hierarchical CBM sacrifices some absolute accuracy compared to the CLIP probe, it gains perfect logical transparency and intervenability.}
