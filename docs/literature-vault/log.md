@@ -23,3 +23,5 @@
 ## [2026-08-17] ingest | Zhang 2019
 ## [2026-08-17] lint | Performed a full wiki health-check and resolved broken links and missing concept pages
 ## [2026-08-17] query | Synthesized wiki content into literature_review and research_gaps based on P1.md
+## [2026-09-20] ingest | Koh 2020
+

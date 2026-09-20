@@ -9,4 +9,5 @@ Concept-based Explainable Artificial Intelligence (C-XAI) is a subfield of expla
 C-XAI methods can be broadly categorized into post-hoc explanation methods (which analyze an already trained black-box model) and explainable-by-design models (like Concept Bottleneck Models, which explicitly incorporate concept representations into their architecture).
 
 **Related Papers:**
+- [[Koh_2020]]: Foundational paper establishing Concept Bottleneck Models as a premier explainable-by-design C-XAI paradigm.
 - [[Poeta_2025]]: Provides a comprehensive survey and taxonomy of the C-XAI field.
