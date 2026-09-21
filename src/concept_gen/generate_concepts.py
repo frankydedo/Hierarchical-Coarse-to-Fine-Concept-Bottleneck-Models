@@ -24,10 +24,11 @@ def call_with_retry(prompt, retries=3, backoff=5):
             response = client.chat.completions.create(
                 model=MODEL_ID,
                 messages=[
-                    {"role": "system", "content": "You are a computer vision expert. You only output valid JSON arrays. Do not wrap the JSON in markdown code blocks, just output the raw JSON list."},
+                    {"role": "system", "content": "You are an expert computer vision annotator. Your descriptions must focus EXCLUSIVELY on physical, visual features (shapes, colors, textures, distinct body parts). NEVER mention behaviors, habitats, sounds, or invisible traits. Keep phrases extremely concise (maximum 4 words). You only output valid JSON arrays."},
                     {"role": "user", "content": prompt}
                 ],
-                temperature=0.7
+                temperature=0.2,
+                frequency_penalty=1.2
             )
             content = response.choices[0].message.content.strip()
             
