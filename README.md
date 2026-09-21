@@ -44,7 +44,6 @@ This strict hierarchy ensures zero "catastrophic" mistakes across superclasses u
 Downloads and processes the custom High-Resolution CIFAR-100 dataset.
 ```bash
 python -m src.data_prep.download_custom_dataset
-python -m src.data_prep.extract_pngs
 ```
 
 ### 2. Concept Generation
@@ -65,9 +64,11 @@ python -m src.training.train_classifiers
 ```
 
 ### 4. Evaluation
-Evaluates the model against a flat baseline, measures the Lowest Common Ancestor (LCA) error distances, and generates plots.
+Evaluates the models (Hierarchical, Flat, Zero-Shot), measures the Lowest Common Ancestor (LCA) error distances, and generates plots.
 ```bash
+python -m src.evaluation.evaluate
 python -m src.evaluation.flat_baseline
+python -m src.evaluation.zeroshot_baseline
 python -m src.evaluation.lca_eval
 python -m src.evaluation.plot_results
 ```
