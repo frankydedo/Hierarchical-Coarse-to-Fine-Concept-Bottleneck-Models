@@ -46,22 +46,8 @@ def filter_synonyms(concept_dict):
         cleaned_dict[cls] = retained
     return cleaned_dict
 
-def activation_based_filtering(coarse_dict, fine_dict, top_k_coarse=10, top_k_fine=10, images_per_class=20):
-    print("\n--- Applying Activation-Based Functional Filtering ---")
-    model_name = "openai/clip-vit-base-patch32"
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    print(f"Loading CLIP model on {device}...")
-    clip_model = CLIPModel.from_pretrained(model_name).to(device)
-    processor = CLIPProcessor.from_pretrained(model_name)
-    
-    test_dir = os.path.join(DATA_DIR, "cifar_images", "train") # use train set for filtering to avoid data leak
-    
-    # Pre-extract image embeddings for all classes to save time
 def class_level_filter(raw_coarse, raw_fine, taxonomy, sentence_model):
     return filter_synonyms(raw_coarse), filter_synonyms(raw_fine)
-
-def concept_level_deduplication(coarse_dict, fine_dict, sentence_model):
-    return coarse_dict, fine_dict
 
 def activation_based_filtering(raw_coarse, raw_fine, taxonomy, clip_model, processor, device):
     """
@@ -204,9 +190,6 @@ def main():
     
     print("\n=== STEP 2: ACTIVATION-BASED FUNCTIONAL FILTERING ===")
     filtered_coarse, filtered_fine = activation_based_filtering(filtered_coarse, filtered_fine, cifar100_taxonomy, clip_model, processor, device)
-    
-    print("\n=== STEP 3: CONCEPT-LEVEL DEDUPLICATION ===")
-    filtered_coarse, filtered_fine = concept_level_deduplication(filtered_coarse, filtered_fine, sentence_model)
     
     print("\nSaving filtered concepts...")
     with open(os.path.join(DATA_DIR, "filtered_coarse_concepts.json"), "w") as f:
