@@ -1,5 +1,9 @@
 # Hierarchical Coarse-to-Fine Concept Bottleneck Models
 
+[![Overleaf Draft](https://img.shields.io/badge/Paper_Draft-Overleaf-47A141.svg?logo=overleaf)](https://www.overleaf.com/project/6a454543e7558b4d9ac7f8b5)
+
+**Authors**: Francesco Pio De Dominicis and Luigi Marguglio (Politecnico di Torino)
+
 ![Architecture](paper/figures/architecture_hor.png)
 
 This repository contains the implementation of a **Hierarchical Concept Bottleneck Model (Hier. CBM)**, developed for Explainable AI (XAI). The project leverages a hard-gating mechanism to enforce a rigorous taxonomy (Superclasses $\rightarrow$ Subclasses) during concept reasoning, effectively bridging the gap between concept and label hierarchies.
